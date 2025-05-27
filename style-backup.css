@@ -1,0 +1,561 @@
+/* CSS Variables - Theme Configuration */
+:root {
+    --font-headings: 'Raleway', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    --color-background: #f0f8ff; /* AliceBlue - Lighter, more airy for mobile, hints at sky */
+    --color-text: #485460;       /* Darker grey for better contrast on light bg */
+    --color-headings: #2d3436;   /* Even darker for headings */
+    
+    /* Beach, Music, Dance Accents - Vibrant for mobile */
+    --color-primary-accent: #ff7f50; /* Coral - sunset, energy */
+    --color-primary-accent-rgb: 255, 127, 80;
+    --color-secondary-accent: #1abc9c; /* Turquoise - vibrant water, music */
+    --color-highlight: #f1c40f;     /* Sunflower - sun, joy, highlight */
+    
+    --color-surface: #ffffff;
+    --color-border: #dcdde1;
+    --color-alt-bg: #f7f8fa;
+
+    /* Ocean Wave Colors */
+    --ocean-wave-color-1: rgba(27, 188, 156, 0.6);  /* Lighter Turquoise */
+    --ocean-wave-color-2: rgba(27, 188, 156, 0.45);
+    --ocean-wave-color-3: rgba(27, 188, 156, 0.3);
+    --ocean-wave-color-4: rgba(27, 188, 156, 0.7); /* Darker, more solid base wave */
+
+    /* Fish Colors */
+    --fish-color-1: rgba(255, 255, 255, 0.7);
+    --fish-color-2: rgba(241, 196, 15, 0.6); /* Sunflower yellow fish */
+    --fish-color-3: rgba(255, 127, 80, 0.5); /* Coral fish */
+
+
+    --shadow-soft: 0 3px 8px rgba(0,0,0,0.07);
+    --shadow-medium: 0 5px 15px rgba(0,0,0,0.1);
+    --border-radius-main: 10px; /* Slightly more rounded for softer mobile feel */
+}
+
+/* Global Resets & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%; /* Base for rem units */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.65; /* Increased for mobile readability */
+    font-size: 1rem; /* Approx 16px, adjust if needed */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on iOS */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    min-height: -webkit-fill-available; /* iOS full height */
+    position: relative; 
+}
+
+main {
+    flex-grow: 1;
+    position: relative; 
+    z-index: 10; 
+}
+
+.container {
+    width: 90%;
+    max-width: 500px; /* Max width for content on mobile, can be adjusted */
+    margin: 0 auto;
+    padding: 0 15px; /* Equivalent to 0.9375rem */
+    position: relative; 
+    z-index: 5; 
+}
+
+/* Typography - Mobile First */
+h1, h2, h3 {
+    font-family: var(--font-headings);
+    color: var(--color-headings);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 0.6em;
+}
+
+h1 {
+    font-size: 2.2rem; /* Good size for mobile hero */
+    font-weight: 300; 
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 1.7rem; /* Section titles */
+    text-align: center; 
+    margin-bottom: 0.8em; 
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: var(--color-primary-accent); 
+}
+
+p {
+    margin-bottom: 0.8em;
+    font-size: 0.95rem; /* Slightly smaller for mobile paragraphs */
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #fff; /* White for hero sections */
+    opacity: 0.9;
+    font-weight: 300;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Sun Element */
+.sun {
+    width: 60px; /* Smaller for mobile */
+    height: 60px;
+    background: radial-gradient(circle, var(--color-highlight) 30%, rgba(241, 196, 15, 0) 70%);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px; /* Adjusted position */
+    right: 20px;
+    z-index: 6; /* Above gradient, below text if text overlaps */
+    animation: pulse-sun 5s infinite ease-in-out;
+    box-shadow: 0 0 20px 5px rgba(241, 196, 15, 0.3);
+}
+
+@keyframes pulse-sun {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+
+/* Header Sections Styling */
+.hero-section, .quiz-header, .reveal-header {
+    padding: 3rem 0 6rem 0; /* Mobile-friendly padding, adjusted for waves */
+    text-align: center;
+    color: #fff; 
+    position: relative; 
+    overflow: hidden; 
+    background: linear-gradient(135deg, var(--color-secondary-accent) 0%, var(--color-primary-accent) 70%, var(--color-highlight) 100%);
+    background-size: 250% 250%; 
+    animation: dance-gradient 20s ease infinite alternate; 
+}
+/* Gradient animation remains the same */
+@keyframes dance-gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+
+/* Wave Styling & Animation */
+.wave-container {
+    width: 100%;
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    height: 80px; /* Adjusted for mobile */
+    overflow: visible; /* Allow fish to peek slightly if animated outside bounds before disappearing */
+    z-index: 5; 
+}
+
+.waves {
+    position: absolute; /* Make waves cover fish if needed */
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 12vh; 
+    min-height: 60px; /* Adjusted for mobile */
+    max-height: 100px; /* Adjusted for mobile */
+    display: block; 
+    z-index: 10; /* Waves above fish */
+}
+/* Parallax animation for waves remains the same */
+.parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+@keyframes move-forever {
+    0% { transform: translate3d(-90px,0,0); }
+    100% {  transform: translate3d(85px,0,0); }
+}
+
+/* Fish Styling & Animation */
+.fish {
+    position: absolute;
+    bottom: 5px; /* Start near bottom of wave container */
+    width: 40px; /* Smaller fish for mobile */
+    height: auto;
+    opacity: 0.8;
+    z-index: 9; /* Fish behind waves but in wave container */
+    animation: swim 15s linear infinite;
+    fill: var(--fish-color-1); /* Default fish color */
+}
+.fish-1 { left: -50px; animation-duration: 18s; animation-delay: 0s; bottom: 15px; width: 45px; fill:var(--fish-color-1); }
+.fish-2 { left: -60px; animation-duration: 22s; animation-delay: 5s; bottom: 5px; width: 35px; fill: var(--fish-color-2); }
+.fish-3 { /* Facing other way */ left: -55px; animation-duration: 20s; animation-delay: 10s; bottom: 20px; transform: scaleX(-1); fill: var(--fish-color-3);}
+.fish-4 { left: -50px; animation-duration: 25s; animation-delay: 13s; bottom: 10px; width: 30px; fill: var(--fish-color-1); opacity: 0.6; }
+
+
+@keyframes swim {
+    0% { transform: translateX(0) translateY(0px) rotate(0deg); opacity: 0.3; }
+    20% { transform: translateX(25vw) translateY(-5px) rotate(-5deg); opacity: 0.9; } /* vw for responsive swim distance */
+    50% { transform: translateX(50vw) translateY(0px) rotate(0deg); opacity: 0.9; }
+    80% { transform: translateX(75vw) translateY(5px) rotate(5deg); opacity: 0.9; }
+    99% { transform: translateX(100vw) translateY(-2px) rotate(-2deg); opacity: 0.3; } /* Swim across screen */
+    100% { transform: translateX(101vw) translateY(-2px) rotate(-2deg); opacity: 0; } /* Disappear past edge */
+}
+
+
+/* Floating Musical Notes - Tuned for mobile */
+.floating-elements {
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; 
+    z-index: 1; 
+    pointer-events: none; 
+}
+.music-note {
+    position: absolute;
+    font-size: 1.1rem; /* Slightly smaller default */
+    color: var(--color-secondary-accent); 
+    opacity: 0; 
+    animation: float-mobile 20s infinite ease-in-out; 
+    user-select: none; 
+}
+/* More notes, fine-tuned delays/opacities for mobile */
+.music-note:nth-child(1) { left: 15%; animation-delay: 0s; font-size: 1.3rem; opacity: 0.08; animation-duration: 22s;}
+.music-note:nth-child(2) { left: 25%; animation-delay: -15s; font-size: 0.9rem; opacity: 0.05; animation-duration: 25s;}
+.music-note:nth-child(3) { left: 75%; animation-delay: -7s; font-size: 1.5rem; opacity: 0.06; animation-duration: 18s;}
+.music-note:nth-child(4) { left: 80%; animation-delay: -10s; font-size: 1.1rem; opacity: 0.09; animation-duration: 23s;}
+.music-note:nth-child(5) { left: 45%; animation-delay: -2s; font-size: 1.0rem; opacity: 0.04; animation-duration: 28s;}
+.music-note:nth-child(6) { left: 60%; animation-delay: -12s; font-size: 1.2rem; opacity: 0.07; animation-duration: 19s;}
+.music-note:nth-child(7) { left: 30%; animation-delay: -5s; font-size: 1.0rem; opacity: 0.05; animation-duration: 26s;}
+.music-note:nth-child(8) { left: 65%; animation-delay: -18s; font-size: 1.4rem; opacity: 0.06; animation-duration: 21s;}
+.music-note:nth-child(9) { left: 5%; animation-delay: -3s; font-size: 1.2rem; opacity: 0.08; animation-duration: 20s;}
+.music-note:nth-child(10) { left: 90%; animation-delay: -13s; font-size: 0.9rem; opacity: 0.05; animation-duration: 27s;}
+.music-note:nth-child(11) { left: 35%; animation-delay: -8s; font-size: 1.3rem; opacity: 0.07; animation-duration: 24s;}
+.music-note:nth-child(12) { left: 50%; animation-delay: -16s; font-size: 1.0rem; opacity: 0.04; animation-duration: 22s;}
+.music-note:nth-child(13) { left: 85%; animation-delay: -1s; font-size: 1.5rem; opacity: 0.06; animation-duration: 19s;}
+.music-note:nth-child(14) { left: 10%; animation-delay: -11s; font-size: 1.1rem; opacity: 0.09; animation-duration: 25s;}
+.music-note:nth-child(15) { left: 70%; animation-delay: -6s; font-size: 0.9rem; opacity: 0.05; animation-duration: 23s;}
+
+
+@keyframes float-mobile { /* Renamed to avoid conflict if desktop styles were added later */
+    0% { transform: translateY(100vh) rotate(0deg) scale(0.7); opacity: 0; } /* Start lower, smaller */
+    15% { opacity: var(--start-opacity, 0.6); } /* Adjusted for individual opacities */
+    85% { opacity: var(--start-opacity, 0.6); }
+    100% { transform: translateY(-15vh) rotate(720deg) scale(1.1); opacity: 0; } /* End higher, larger */
+}
+
+
+/* Content Sections - Mobile First */
+.content-section {
+    padding: 2.5rem 0; /* Mobile padding */
+    position: relative; 
+    z-index: 10;
+}
+.content-section.alt-bg {
+    background-color: var(--color-alt-bg); 
+}
+
+/* Buttons - Mobile First */
+.button-primary, .button-secondary {
+    font-family: var(--font-headings);
+    font-weight: 600;
+    font-size: 1rem; /* Good tap size */
+    padding: 0.75em 1.6em; /* Adjusted padding */
+    border-radius: 50px; 
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Faster mobile transitions */
+    cursor: pointer;
+    border: 2px solid transparent;
+    letter-spacing: 0.5px;
+    position: relative; 
+    z-index: 15; 
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+}
+/* Button primary pulse and hover remains similar, ensure it looks good on mobile */
+.button-primary {
+    background-color: var(--color-primary-accent);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+    animation: pulse-button 3s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+.button-primary:active { /* For touch feedback */
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(var(--color-primary-accent-rgb), 0.2);
+}
+.button-primary:hover { /* For desktop/mouse interaction (secondary) */
+    background-color: var(--color-highlight);
+    color: var(--color-headings);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: var(--shadow-medium);
+    animation-play-state: paused; 
+}
+/* Pulse animation remains the same */
+@keyframes pulse-button { /* Ensure it's not too aggressive on mobile */
+    0%, 100% { transform: scale(1); box-shadow: var(--shadow-soft); }
+    50% { transform: scale(1.02);  box-shadow: 0 6px 20px rgba(var(--color-primary-accent-rgb), 0.25);  }
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: var(--color-secondary-accent);
+    border-color: var(--color-secondary-accent);
+}
+.button-secondary:active {
+    background-color: rgba(27, 188, 156, 0.1); /* Slight bg change on tap */
+    transform: scale(0.98);
+}
+.button-secondary:hover { /* For desktop/mouse interaction */
+    background-color: var(--color-secondary-accent);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Gallery - Mobile First (Single Column) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for mobile */
+    gap: 1rem; /* Adjusted gap for mobile */
+}
+
+.gallery-item {
+    position: relative; /* Needed for absolute positioning of the image later */
+    width: 100%;
+    padding-bottom: 100%; /* This creates a square: height is 100% of the width */
+    border-radius: var(--border-radius-main);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease; /* Faster on mobile */
+}
+
+.gallery-item img {
+    position: absolute; /* Position image within the square container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Scales the image to maintain aspect ratio while filling the element's entire content box */
+    display: block;
+}
+
+.gallery-item:active { /* Tap feedback */
+    transform: scale(0.99);
+}
+
+/* Hover for desktop (secondary) */
+@media (min-width: 601px) { /* Only apply hover zoom on larger screens if needed */
+    .gallery-item:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: var(--shadow-medium);
+    }
+    /* No need to scale the image separately with object-fit:cover already doing its job */
+
+    .gallery-grid { /* Two columns for tablet-ish sizes */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem; /* Slightly larger gap for tablets */
+    }
+}
+
+@media (min-width: 961px) { /* Three columns for larger desktop (though user said not important) */
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allowing more flexibility */
+        gap: 1.5rem; /* Larger gap for desktop */
+    }
+     .gallery-item { /* Ensure padding-bottom trick works with minmax if needed, though width:100% should handle it */
+        padding-bottom: 100%;
+    }
+}
+
+
+/* Quiz Specific Styling - Mobile First */
+#quiz-cta { text-align: center; }
+.quiz-intro-text { font-size: 1.05rem; margin-bottom: 0.5em; }
+
+.quiz-container-styled {
+    background-color: var(--color-surface);
+    padding: 1.5em; /* Mobile padding */
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-medium);
+    max-width: 100%; 
+    margin: 0 auto; 
+}
+.quiz-question-text {
+    font-size: 1.25rem; /* Mobile quiz question size */
+    margin-bottom: 1.2em;
+    color: var(--color-headings);
+    font-weight: 600;
+}
+ul.quiz-options {
+    list-style-type: none;
+    margin-bottom: 1.5em;
+}
+ul.quiz-options li {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 50px; 
+    padding: 0.7em 1em; /* Mobile padding for options */
+    margin-bottom: 0.6em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left; 
+    display: flex; /* For better alignment of radio and label */
+    align-items: center;
+}
+ul.quiz-options li:active {
+    background-color: rgba(27, 188, 156, 0.1);
+}
+ul.quiz-options li:hover { /* Secondary */
+    border-color: var(--color-secondary-accent);
+    background-color: var(--color-secondary-accent);
+    color: #fff;
+}
+ul.quiz-options li input[type="radio"] {
+    margin-right: 0.7em;
+    accent-color: var(--color-primary-accent); 
+    transform: scale(1.1); /* Slightly larger radio buttons */
+}
+ul.quiz-options li input[type="radio"]:checked + label {
+    color: var(--color-primary-accent); 
+    font-weight: 600;
+}
+ul.quiz-options li label {
+    flex-grow: 1; /* Label takes remaining space */
+    font-size: 0.9rem;
+}
+
+.quiz-submit-btn { margin-top: 1em; width: 100%; } /* Full width button on mobile */
+
+.feedback-message {
+    margin-top: 1.2em;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 1.5em;
+    padding: 0.6em;
+    border-radius: var(--border-radius-main);
+}
+/* Feedback message colors remain the same */
+.feedback-message.correct { color: var(--color-secondary-accent); background-color: #e0f2f1; border: 1px solid var(--color-secondary-accent); }
+.feedback-message.incorrect { color: var(--color-primary-accent); background-color: #fff3e0; border: 1px solid var(--color-primary-accent); }
+
+/* Reveal Page Specific Styling - Mobile First */
+.text-center { text-align: center; }
+
+.score-display { margin-bottom: 0.8em; }
+.final-score-text {
+    font-size: 1.5rem; /* Mobile score size */
+    font-weight: 700;
+    color: var(--color-headings);
+}
+.score-message-styled {
+    font-size: 1rem;
+    color: var(--color-text);
+    opacity: 0.9;
+    margin-bottom: 2em;
+    max-width: 100%;
+}
+
+.ticket-reveal-styled {
+    background-color: var(--color-surface);
+    padding: 1.5em; /* Mobile padding */
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-medium);
+    margin-top: 1.5em;
+}
+.ticket-image-styled {
+    max-width: 80%; /* Responsive ticket image */
+    height: auto;
+    margin: 0.8em auto 1.2em;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    border: 4px solid var(--color-highlight); 
+}
+.event-details { margin-bottom: 1.2em; }
+.event-details p { margin-bottom: 0.25em; font-size: 1rem; }
+.excited-text-styled {
+    font-family: var(--font-headings);
+    font-weight: 600;
+    color: var(--color-primary-accent);
+    font-size: 1.25rem; /* Mobile excited text */
+    margin: 1.2em 0;
+}
+.final-message { font-size: 1rem; margin-bottom: 1.5em; }
+.festival-link-styled { margin-top: 1em; width: 100%; } /* Full width button */
+
+
+/* Footer - Mobile First */
+.page-footer {
+    padding: 2em 0; /* Mobile padding */
+    text-align: center;
+    background-color: var(--color-headings); 
+    color: #fff;
+    font-size: 0.85rem; /* Smaller footer text */
+    position: relative; 
+    z-index: 20; 
+}
+.page-footer p {
+    margin-bottom: 0;
+    opacity: 0.8;
+}
+
+/* Desktop / Larger Screen Adjustments (Minimal, as per request) */
+@media (min-width: 601px) { /* Tablet and up */
+    body { font-size: 17px; /* Slightly larger base font */ }
+    .container { max-width: 700px; } /* Wider container */
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
+    .subtitle { font-size: 1.2rem; }
+    .quiz-submit-btn, .festival-link-styled { width: auto; } /* Auto width for buttons on larger screens */
+    .ticket-image-styled { max-width: 300px; }
+    .sun { width: 80px; height: 80px; top: 30px; right: 30px; }
+    .fish { width: 50px; }
+    .music-note { font-size: 1.3rem; }
+}
+
+@media (min-width: 961px) { /* Desktop (though not main focus) */
+    body { font-size: 18px; }
+    .container { max-width: 900px; }
+    h1 { font-size: 3.2rem; }
+    h2 { font-size: 2.4rem; }
+    .sun { width: 100px; height: 100px; top: 40px; right: 50px; }
+    .fish { width: 60px; }
+    .music-note { font-size: 1.5rem; }
+}
+
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .parallax > use,
+  .music-note,
+  .fish, /* Stop fish animation */
+  .sun, /* Stop sun animation */
+  .hero-section, .quiz-header, .reveal-header, 
+  .button-primary { 
+    animation: none !important;
+  }
+  .music-note, .fish { /* Hide notes and fish completely for reduced motion */
+      display: none;
+  }
+  .gallery-item:active, .gallery-item:hover { transform: none; }
+  .button-primary:active, .button-secondary:active,
+  .button-primary:hover, .button-secondary:hover {
+      transform: none; 
+  }
+}

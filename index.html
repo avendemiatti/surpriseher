@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Uma Surpresa Especial para Isabella</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <div class="floating-elements">
+            <span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span><span class="music-note">♭</span>
+            <span class="music-note">♮</span><span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span>
+            <span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♭</span><span class="music-note">♩</span><span class="music-note">♮</span>
+            <span class="music-note">♫</span><span class="music-note">♪</span><span class="music-note">♬</span><span class="music-note">♩</span><span class="music-note">♭</span>
+            <span class="music-note">♮</span><span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span>
+        </div>
+
+        <header class="hero-section">
+            <div class="sun"></div>
+            <div class="container header-content-container">
+                <h1>Olá, Isabella!</h1>
+                <p class="subtitle">Preparei algo que combina as coisas que você ama...</p>
+            </div>
+            <div class="wave-container top-waves"> <svg class="fish fish-1" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25 Q 25 0 50 25 T 100 25 L95 30 Q 50 40 5 30 Z" /></svg>
+                <svg class="fish fish-2" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25 Q 25 0 50 25 T 100 25 L95 30 Q 50 40 5 30 Z" /></svg>
+                <svg class="fish fish-3" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M100 25 Q 75 0 50 25 T 0 25 L5 30 Q 50 40 95 30 Z" /></svg>
+                <svg class="fish fish-4" viewBox="0 0 80 40" preserveAspectRatio="none"><path d="M0 20 Q 20 0 40 20 T 80 20 L75 25 Q 40 35 5 25 Z" /></svg>
+
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave-top" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave-top" x="48" y="0" fill="var(--ocean-wave-color-1)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="3" fill="var(--ocean-wave-color-2)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="5" fill="var(--ocean-wave-color-3)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="7" fill="var(--ocean-wave-color-4)" /> 
+                        {/* This last wave will be mostly covered by the bottom-wave, or you can make it transparent if needed */}
+                    </g>
+                </svg>
+            </div>
+            <div class="wave-container bottom-wave-edge"> <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave-bottom-edge" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax-bottom-edge">
+                        <use xlink:href="#gentle-wave-bottom-edge" x="48" y="0" fill="var(--color-background)" />
+                    </g>
+                </svg>
+            </div>
+        </header>
+
+        <main>
+            <section id="memories" class="content-section">
+                <div class="container">
+                    <h2>Nossas Lembranças</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="images/photo1.jpeg" alt="Nossa Memória 1"></div>
+                        <div class="gallery-item"><img src="images/photo2.jpeg" alt="Nossa Memória 1"></div>
+                        <div class="gallery-item"><img src="images/photo3.jpeg" alt="Nossa Memória 1"></div>
+                        <div class="gallery-item"><img src="images/photo4.jpeg" alt="Nossa Memória 1"></div>
+                        <div class="gallery-item"><img src="images/photo8.jpeg" alt="Nossa Memória 1"></div>
+                        <div class="gallery-item"><img src="images/photo7.jpeg" alt="Nossa Memória 1"></div>
+                        </div>
+                </div>
+            </section>
+
+            <section id="quiz-cta" class="content-section alt-bg">
+                <div class="container">
+                    <p class="quiz-intro-text">Gostou de reviver? Tenho mais uma coisinha...</p>
+                    <h2>Um Quiz Só Para Você</h2>
+                    <p>Vamos ver o quanto nos conhecemos!</p>
+                    <button id="startQuizBtn" class="button-primary">Começar o Quiz!</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <div class="container">
+                <p>Com todo carinho ❤️</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.getElementById('startQuizBtn').addEventListener('click', function() {
+            window.location.href = 'quiz.html';
+        });
+    </script>
+</body>
+</html>

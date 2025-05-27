@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>A Grande Surpresa, Isabella!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="floating-elements">
+            <span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span><span class="music-note">♭</span>
+            <span class="music-note">♮</span><span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span>
+            <span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♭</span><span class="music-note">♩</span><span class="music-note">♮</span>
+            <span class="music-note">♫</span><span class="music-note">♪</span><span class="music-note">♬</span><span class="music-note">♩</span><span class="music-note">♭</span>
+            <span class="music-note">♮</span><span class="music-note">♪</span><span class="music-note">♫</span><span class="music-note">♩</span><span class="music-note">♬</span>
+        </div>
+
+        <header class="reveal-header">
+            <div class="sun"></div>
+            <div class="container header-content-container">
+                <h1>E o Resultado É...</h1>
+            </div>
+            <div class="wave-container top-waves">
+                <svg class="fish fish-1" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25 Q 25 0 50 25 T 100 25 L95 30 Q 50 40 5 30 Z" /></svg>
+                <svg class="fish fish-2" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25 Q 25 0 50 25 T 100 25 L95 30 Q 50 40 5 30 Z" /></svg>
+                <svg class="fish fish-3" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M100 25 Q 75 0 50 25 T 0 25 L5 30 Q 50 40 95 30 Z" /></svg>
+                <svg class="fish fish-4" viewBox="0 0 80 40" preserveAspectRatio="none"><path d="M0 20 Q 20 0 40 20 T 80 20 L75 25 Q 40 35 5 25 Z" /></svg>
+
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave-top" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave-top" x="48" y="0" fill="var(--ocean-wave-color-1)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="3" fill="var(--ocean-wave-color-2)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="5" fill="var(--ocean-wave-color-3)" />
+                        <use xlink:href="#gentle-wave-top" x="48" y="7" fill="var(--ocean-wave-color-4)" />
+                    </g>
+                </svg>
+            </div>
+            <div class="wave-container bottom-wave-edge">
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave-bottom-edge" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax-bottom-edge">
+                        <use xlink:href="#gentle-wave-bottom-edge" x="48" y="0" fill="var(--color-background)" />
+                    </g>
+                </svg>
+            </div>
+        </header>
+
+        <main>
+            <section class="content-section">
+                <div class="container text-center">
+                    <div id="scoreResults" class="score-display">
+                        </div>
+                    
+                    <p class="score-message-styled">Mas o placar é só um detalhe...<br>O que importa mesmo é o que vem agora!</p>
+                    
+                    <div class="ticket-reveal-styled">
+                        <h2>Você ganhou um presente especial...</h2>
+                        <img src="images/ticket.png" alt="Ingresso para The Town" id="ticketImage" class="ticket-image-styled">
+                        <h3>The Town Festival!</h3>
+                        <div class="event-details">
+                            <p><strong>Data:</strong> 7 de Setembro</p>
+                            <p><strong>Local:</strong> São Paulo</p>
+                        </div>
+                        <p class="excited-text-styled">Vamos celebrar a vida, a música e nós dois juntos!</p>
+                        <p class="final-message">Espero que ame, meu amor!</p>
+                        <a href="https://thetown.com.br/pt/" target="_blank" class="button-secondary festival-link-styled">Mais Sobre o Festival</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="page-footer">
+            <div class="container">
+                <p>Mal posso esperar! ❤️</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const score = localStorage.getItem('quizScore');
+            const totalQuestions = localStorage.getItem('quizTotalQuestions');
+            const scoreResultsDiv = document.getElementById('scoreResults');
+
+            if (score !== null && totalQuestions !== null) {
+                scoreResultsDiv.innerHTML = `<p class="final-score-text">Você acertou ${score} de ${totalQuestions} perguntas!</p>`;
+            } else {
+                scoreResultsDiv.innerHTML = "<p>Não foi possível carregar o resultado, mas a surpresa continua!</p>";
+            }
+        });
+    </script>
+</body>
+</html>
