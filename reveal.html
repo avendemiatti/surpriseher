@@ -66,15 +66,15 @@
                     <p class="score-message-styled">Mas o placar é só um detalhe...<br>O que importa mesmo é o que vem agora!</p>
                     
                     <div class="ticket-reveal-styled">
-                        <h2>Você ganhou um presente especial...</h2>
-                        <img src="images/ticket.png" alt="Ingresso para The Town" id="ticketImage" class="ticket-image-styled">
+                        <h2>VAMOS NO THE TOWN COMIGO?!</h2>
+                        <img src="images/thetown.jpeg" alt="Ingresso para The Town" id="ticketImage" class="ticket-image-styled">
                         <h3>The Town Festival!</h3>
                         <div class="event-details">
                             <p><strong>Data:</strong> 7 de Setembro</p>
                             <p><strong>Local:</strong> São Paulo</p>
                         </div>
-                        <p class="excited-text-styled">Vamos celebrar a vida, a música e nós dois juntos!</p>
-                        <p class="final-message">Espero que ame, meu amor!</p>
+                        <p class="excited-text-styled">Ingresso - Isabella Alves Ferreira - #57432995 </p>
+                        <p class="excited-text-styled">Ingresso - Alexandre Vendemiatti Junior- #57701447 </p>
                         <a href="https://thetown.com.br/pt/" target="_blank" class="button-secondary festival-link-styled">Mais Sobre o Festival</a>
                     </div>
                 </div>
@@ -83,22 +83,68 @@
 
         <footer class="page-footer">
             <div class="container">
-                <p>Mal posso esperar! ❤️</p>
+                <p>Quando vamos começar a nossa playlist The Town 2025? ❤️</p>
             </div>
         </footer>
-    </div>
-
+    </div> <audio id="revealSongPlayer" src="audio/thelessiknowthebtter.mp3" loop preload="auto"></audio>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Existing score display logic
             const score = localStorage.getItem('quizScore');
             const totalQuestions = localStorage.getItem('quizTotalQuestions');
             const scoreResultsDiv = document.getElementById('scoreResults');
 
-            if (score !== null && totalQuestions !== null) {
-                scoreResultsDiv.innerHTML = `<p class="final-score-text">Você acertou ${score} de ${totalQuestions} perguntas!</p>`;
-            } else {
-                scoreResultsDiv.innerHTML = "<p>Não foi possível carregar o resultado, mas a surpresa continua!</p>";
+            if (scoreResultsDiv) { 
+                if (score !== null && totalQuestions !== null) {
+                    scoreResultsDiv.innerHTML = `<p class="final-score-text">Você acertou ${score} de ${totalQuestions} perguntas!</p>`;
+                } else {
+                    scoreResultsDiv.innerHTML = "<p>Não foi possível carregar o resultado, mas a surpresa continua!</p>";
+                }
             }
+
+            // --- UPDATED Music playback logic for reveal page ---
+            if (localStorage.getItem('playSongOnRevealLoad') === 'true') {
+                const audioPlayer = document.getElementById('revealSongPlayer');
+                const storedTime = localStorage.getItem('songCurrentTime');
+                const wasPlaying = localStorage.getItem('songIsPlaying') === 'true'; // Convert string "true" to boolean
+
+                if (audioPlayer) {
+                    const attemptPlay = () => {
+                        if (wasPlaying) { // Only attempt to play if it was playing before
+                            audioPlayer.play().then(() => {
+                                console.log("Reveal page music resumed/started!");
+                            }).catch(error => {
+                                console.warn("Reveal page music playback was prevented:", error);
+                                // Fallback: maybe show a play button if autoplay fails
+                            });
+                        } else {
+                            console.log("Song was paused on previous page, not auto-playing on reveal.");
+                        }
+                    };
+
+                    if (storedTime) {
+                        // It's crucial to wait for metadata to load before setting currentTime
+                        if (audioPlayer.readyState >= 1) { // HAVE_METADATA or more
+                            audioPlayer.currentTime = parseFloat(storedTime);
+                            attemptPlay();
+                        } else {
+                            audioPlayer.addEventListener('loadedmetadata', () => {
+                                audioPlayer.currentTime = parseFloat(storedTime);
+                                attemptPlay();
+                            }, { once: true }); // Use {once: true} so it only fires once
+                        }
+                    } else if (wasPlaying) { 
+                        // If no stored time but it was playing, just play from the beginning
+                        attemptPlay();
+                    }
+                }
+                // Clean up flags
+                localStorage.removeItem('playSongOnRevealLoad');
+                localStorage.removeItem('songCurrentTime');
+                localStorage.removeItem('songIsPlaying');
+            }
+            // --- END OF UPDATED Music Logic ---
         });
     </script>
 </body>

@@ -1,45 +1,44 @@
 const quizData = [
     // === EDIT QUIZ QUESTIONS BELOW ===
-    // IMPORTANT: The 'correct' property should be the 'id' of the correct radio button (a, b, c, or d)
     {
-        question: "Qual foi o lugar do nosso primeiro encontro inesquecível?",
-        a: "No cinema vendo aquele filme...",
-        b: "Naquele café charmoso",
-        c: "No parque, lembra?",
-        d: "Na festa de um amigo",
+        question: "Onde tudo começou?",
+        a: "Foto do cachorro quando eu tava em Nova York",
+        b: "Karaoke no Consulado",
+        c: "Primeira vez que te vi na academia com o Igor",
+        d: "Comprando uma coxinha de xuxu no Los Amigos",
         correct: "b" 
     },
     {
-        question: "Qual é a minha mania que você acha mais engraçada (ou irritante, hehe)?",
-        a: "Cantarolar o tempo todo",
-        b: "Deixar a toalha molhada na cama",
-        c: "Falar com as mãos",
-        d: "Contar piadas ruins",
+        question: "Musica mais impactante para nós?",
+        a: "The Less I Know The Better - Tame Impala",
+        b: "Something - Lasgo",
+        c: "I'm a Terrible Singer - Dua Lipa",
+        d: "Eu Canto Com Má Vontade - Lagum ",
         correct: "a"
     },
     {
-        question: "Qual a cor que você acha que mais combina comigo?",
-        a: "Azul sereno",
-        b: "Vermelho paixão",
-        c: "Verde esperança",
-        d: "Amarelo alegria",
+        question: "Do que ou quem EU acho que voce gosta mais?",
+        a: "Bolo da ex sogra",
+        b: "Rafael Marinheiro - Descendente de Português",
+        c: "Paçoca",
+        d: "Fusca",
         correct: "c"
     },
     {
-        question: "Se fôssemos um casal de filme, qual seríamos?",
-        a: "Jack e Rose (Titanic)",
-        b: "Han Solo e Leia (Star Wars)",
-        c: "Shrek e Fiona (Shrek)",
-        d: "Allie e Noah (Diário de uma Paixão)",
+        question: "Qual combinação de amigos que a gente se divertiria mais juntos?",
+        a: "Luana/Jéssica/Wesley",
+        b: "Lorraine/Andreia(ex chefe)/Rafael",
+        c: "Ana/Tania/André",
+        d: "Thales/Daniel/Igor",
+        correct: "c"
+    },
+    {
+        question: "Se a gente pudesse escolher um evento para ir, qual voce acha que EU escolheria para nós?",
+        a: "Dua Lipa",
+        b: "Evento Emo que esqueci o nome",
+        c: "Viagem para alguma ilha no caribe junto com a Andréia (ex chefe)",
+        d: "The Town",
         correct: "d"
-    },
-    {
-        question: "O que você mais ama fazer quando estamos juntos?",
-        a: "Maratonar séries e filmes",
-        b: "Cozinhar algo delicioso",
-        c: "Conversar por horas a fio",
-        d: "Sair para explorar lugares novos",
-        correct: "c"
     }
     // === END OF QUIZ QUESTIONS ===
 ];
@@ -57,25 +56,28 @@ const feedbackEl = document.getElementById('feedback');
 let currentQuiz = 0;
 let score = 0;
 
-loadQuiz();
-
 function loadQuiz() {
-    deselectAnswers();
-    feedbackEl.textContent = ''; // Clear previous feedback
-    feedbackEl.className = 'feedback-message'; // Reset class
+    deselectAnswers(); // This is key for unchecking options
+    if(feedbackEl) { 
+        feedbackEl.textContent = ''; 
+        feedbackEl.className = 'feedback-message'; 
+    }
     
     const currentQuizData = quizData[currentQuiz];
-    questionEl.innerText = currentQuizData.question;
-    a_text.innerText = currentQuizData.a;
-    b_text.innerText = currentQuizData.b;
-    c_text.innerText = currentQuizData.c;
-    d_text.innerText = currentQuizData.d;
+    // Ensure elements exist before setting innerText (good practice)
+    if(questionEl) questionEl.innerText = currentQuizData.question;
+    if(a_text) a_text.innerText = currentQuizData.a;
+    if(b_text) b_text.innerText = currentQuizData.b;
+    if(c_text) c_text.innerText = currentQuizData.c;
+    if(d_text) d_text.innerText = currentQuizData.d;
 
-    setFormEnabled(true); // Enable form elements for the new question
+    setFormEnabled(true); 
 }
 
 function deselectAnswers() {
-    answerEls.forEach(answerEl => answerEl.checked = false);
+    answerEls.forEach(answerEl => {
+        answerEl.checked = false;
+    });
 }
 
 function getSelected() {
@@ -89,41 +91,79 @@ function getSelected() {
 }
 
 function setFormEnabled(isEnabled) {
-    answerEls.forEach(answerEl => answerEl.disabled = !isEnabled);
-    submitBtn.disabled = !isEnabled;
+    answerEls.forEach(answerEl => {
+        answerEl.disabled = !isEnabled;
+    });
+    if(submitBtn) {
+        submitBtn.disabled = !isEnabled; 
+    }
 }
 
-submitBtn.addEventListener('click', () => {
-    const answer = getSelected();
-    
-    if (answer) {
-        setFormEnabled(false); // Disable form while showing feedback
+if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+        const answer = getSelected();
+        
+        if (answer) {
+            setFormEnabled(false); 
 
-        if (answer === quizData[currentQuiz].correct) {
-            score++;
-            feedbackEl.textContent = 'Correto! 🎉';
-            feedbackEl.className = 'feedback-message correct';
-        } else {
-            feedbackEl.textContent = `Incorreto. A resposta certa era: ${quizData[currentQuiz][quizData[currentQuiz].correct]}`;
-            // Or simply: feedbackEl.textContent = 'Incorreto. 😟';
-            feedbackEl.className = 'feedback-message incorrect';
-        }
-
-        currentQuiz++;
-
-        setTimeout(() => {
-            if (currentQuiz < quizData.length) {
-                loadQuiz();
+            if (answer === quizData[currentQuiz].correct) {
+                score++;
+                if(feedbackEl) {
+                    feedbackEl.textContent = 'Correto! 🎉';
+                    feedbackEl.className = 'feedback-message correct';
+                }
             } else {
-                localStorage.setItem('quizScore', score);
-                localStorage.setItem('quizTotalQuestions', quizData.length);
-                window.location.href = 'reveal.html';
+                if(feedbackEl) {
+                    const correctAnswerText = quizData[currentQuiz][quizData[currentQuiz].correct]; // Get the text of the correct answer
+                    feedbackEl.textContent = `Incorreto. A resposta certa era: "${correctAnswerText || 'N/A'}"`; // Display it
+                    feedbackEl.className = 'feedback-message incorrect';
+                }
             }
-        }, 2500); // Show feedback for 2.5 seconds
 
-    } else {
-        feedbackEl.textContent = "Por favor, selecione uma resposta!";
-        feedbackEl.className = 'feedback-message incorrect'; // Use incorrect style for prompt
-        // Or use a simple alert: alert("Por favor, selecione uma resposta antes de continuar!");
+            currentQuiz++;
+
+            setTimeout(() => {
+                if (currentQuiz < quizData.length) {
+                    loadQuiz();
+                } else {
+                    localStorage.setItem('quizScore', score);
+                    localStorage.setItem('quizTotalQuestions', quizData.length);
+                    
+                    const quizAudioPlayer = document.getElementById('quizSongPlayer'); 
+                    if (quizAudioPlayer) {
+                        localStorage.setItem('songCurrentTime', quizAudioPlayer.currentTime);
+                        localStorage.setItem('songIsPlaying', !quizAudioPlayer.paused); 
+                    }
+                    localStorage.setItem('playSongOnRevealLoad', 'true'); 
+                    
+                    window.location.href = 'reveal.html';
+                }
+            }, 2500); 
+
+        } else {
+            if(feedbackEl) {
+                feedbackEl.textContent = "Por favor, selecione uma resposta!";
+                feedbackEl.className = 'feedback-message incorrect';
+            }
+        }
+    });
+}
+
+// --- THIS IS THE MAIN FIX AREA for initial load ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial Quiz Load (if on quiz.html page which has the 'quiz' element)
+    if (document.getElementById('quiz')) { 
+        loadQuiz(); // <<<< THIS WILL NOW RUN and call deselectAnswers()
+    }
+
+    // Music logic for quiz.html (if quizSongPlayer exists on this page)
+    const quizAudioPlayer = document.getElementById('quizSongPlayer');
+    if (quizAudioPlayer && localStorage.getItem('playSongOnQuizLoad') === 'true') {
+        quizAudioPlayer.play().then(() => {
+            console.log("Quiz song started!");
+        }).catch(error => {
+            console.warn("Quiz song autoplay was prevented:", error);
+        });
+        localStorage.removeItem('playSongOnQuizLoad');
     }
 });
